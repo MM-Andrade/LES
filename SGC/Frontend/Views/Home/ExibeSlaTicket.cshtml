@@ -1,0 +1,81 @@
+﻿@{
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @*bootstrap Core*@
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @*jQuery Core*@
+    @Scripts.Render("~/bundles/jquery")
+
+</head>
+
+<body>
+
+    @if (ViewBag.SLA != null)
+    {
+        <div class="my-3 p-3 bg-white rounded box-shadow">
+            <h4 class="border-bottom border-gray pb-2 mb-0">SLA</h4>
+
+            <!--Table-->
+            <table id="tablePreview" class="table table-sm">
+                <!--Table head-->
+                <thead>
+                    <tr>
+                        <th>Ticket</th>
+                        <th>Data início</th>
+                        <th>Status</th>
+                        <th>Data Prevista</th>
+                        @* <th>% Atendimento</th>*@
+                        <th>Data Violação</th>
+                    </tr>
+                </thead>
+                <!--Table head-->
+                <!--Table body-->
+                @foreach (var item in ViewBag.SLA)
+                {
+                    <tbody>
+                        <tr>
+                            <td>@item.CodigoTicket</td>
+                            <td>@item.DataCadastro</td>
+                            <td>@item.SlaTicket.Status</td>
+                            <td>@item.SlaTicket.DataPrevista</td>
+                            @*<td>@item.SlaTicket.PercentilAtendimento</td>*@
+                            @if (Convert.ToString(item.SlaTicket.DataViolacao) == "01/01/0001 00:00:00")
+                            {
+                                <td>Não violado</td>
+                            }
+                            else
+                            {
+                                <td>@item.SlaTicket.DataViolacao</td>
+
+                            }
+                        </tr>
+                    </tbody>
+                }
+                <!--Table body-->
+            </table>
+            <!--Table-->
+            @foreach (var item in ViewBag.SLA)
+            {
+                if (string.IsNullOrEmpty(item.SlaTicket.Motivo))
+                {
+
+                }
+                else
+                {
+                    <div>Motivo: @item.SlaTicket.Motivo </div>
+
+                }
+            }
+        </div>
+    }
+</body>
+</html>
+

@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = ViewBag.TipoServico.NomeServico;
+}
+@using (Html.BeginForm("EditarServico", "Home", FormMethod.Post))
+{
+    <form>
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="Servico">Serviço</label>
+                    <input class="form-control" id="Servico" type="text" placeholder="Nome do serviço" name="TipoServico.NomeServico" value="@ViewBag.TipoServico.NomeServico">
+                </div>
+                <div class="col-md-6">
+                    <label for="DataCadastro">Data de Cadastro</label>
+                    <input class="form-control" id="DataCadastro" type="text" placeholder="DataCadastro" name="TipoServico.DataCadastro" value="@ViewBag.TipoServico.DataCadastro" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="Prioridade">Prioridade</label>
+                    <select class="form-control" id="Prioridade" name="TipoServico.Prioridade.Id">
+                        @foreach (var prioridade in ViewBag.Prioridades)
+                        {
+                            <option value="@prioridade.Id">@prioridade.DescricaoPrioridade</option>
+                        }
+                        <option value="@ViewBag.TipoServico.Prioridade.Id" selected hidden>@ViewBag.TipoServico.Prioridade.DescricaoPrioridade</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="TempoAtendimento">Tempo de Atendimento</label>
+                    <input class="form-control" id="Servico" type="text" placeholder="Tempo de Atendimento" name="TipoServico.Prioridade.TempoAtendimento" value="@ViewBag.TipoServico.Prioridade.TempoAtendimento" disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="Departamentos">Departamento</label>
+                    <select class="form-control" id="Departamento" name="TipoServico.Departamento.Id">
+                        @foreach (var departamento in ViewBag.Departamentos)
+                        {
+                            <option value="@departamento.Id">@departamento.NomeDepartamento</option>
+                        }
+                        <option value="@ViewBag.TipoServico.Departamento.Id" selected hidden>@ViewBag.TipoServico.Departamento.NomeDepartamento</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="Status">Status</label>
+                    <select class="form-control" id="Status" name="TipoServico.Status">
+                        <option value="@ViewBag.TipoServico.Status" selected hidden>@ViewBag.TipoServico.Status</option>
+                        <option value="Ativo">Ativo</option>
+                        <option value="Inativo">Inativo</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-4">
+                    @Html.ActionLink("Voltar", "Voltar", "Home", new { returnUrl = this.Request.UrlReferrer }, new { @class = "btn btn-success btn-block" })
+                </div>
+                <div class="col-md-4">
+                    <input type="submit" class="btn btn-success btn-block" value="Alterar" />
+                </div>
+            </div>
+        </div>
+    </form>
+}

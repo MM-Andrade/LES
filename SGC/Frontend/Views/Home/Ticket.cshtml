@@ -1,0 +1,136 @@
+﻿
+@{
+
+    ViewBag.Title = "Ticket " + ViewBag.Ticket.CodigoTicket;
+
+}
+
+@using (Html.BeginForm("Ticket", "Home", FormMethod.Post))
+{
+    <form>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="Ticket">Ticket</label>
+                <input type="text" class="form-control" id="Ticket" name="ticket.CodigoTicket" value="@ViewBag.Ticket.CodigoTicket" readonly="readonly">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="DataAbertura">Data de Abertura</label>
+                <input type="text" class="form-control" id="DataAbertura" name="ticket.DataCadastro" value="@ViewBag.Ticket.DataCadastro" readonly="readonly">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="Status">Status</label>
+                <input type="text" class="form-control" id="Status" name="ticket.Status" value="@ViewBag.Ticket.Status" readonly="readonly">
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label for="Nome">Nome</label>
+                <input type="text" class="form-control" id="Nome" name="ticket.Usuario.Nome" value="@ViewBag.Ticket.Usuario.Nome" readonly="readonly">
+                <label for="Email">Email</label>
+                <input type="text" class="form-control" id="Email" name="ticket.Usuario.Email" value="@ViewBag.Ticket.Usuario.Email" readonly="readonly">
+                <label for="Urgencia">Urgência</label>
+                <input type="text" class="form-control" id="Urgencia" name="ticket.TipoServico.Prioridade.NivelPrioridade" value="@ViewBag.Ticket.TipoServico.Prioridade.NivelPrioridade" readonly="readonly">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="Sobrenome">Sobrenome</label>
+                <input type="text" class="form-control" id="Sobrenome" name="ticket.Usuario.Sobrenome" value="@ViewBag.Ticket.Usuario.Sobrenome" readonly="readonly">
+                <label for="Departamento">Tempo de atendimento (Horas)</label>
+                <input type="text" class="form-control" id="TempoAtendimento" name="ticket.TipoServico.Prioridade.TempoAtendimento" value="@ViewBag.Ticket.TipoServico.Prioridade.TempoAtendimento" readonly="readonly">
+                <label for="Prioridade">Prioridade</label>
+                <input type="text" class="form-control" id="Prioridade" name="ticket.TipoServico.Prioridade.DescricaoPrioridade" value="@ViewBag.Ticket.TipoServico.Prioridade.DescricaoPrioridade" readonly="readonly">
+                @*<label for="Horas">Horas para atendimento</label>
+                    <input type="text" class="form-control" id="Tipo" name="ticket.TipoServico.Prioridade.TempoAtendimento" value="@ViewBag.TipoServico.Prioridade.TempoAtendimento" readonly="readonly">*@
+            </div>
+
+            <div class="form-group col-md-1">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="Departamento">Departamento</label>
+                <input type="text" class="form-control" id="Departamento" name="ticket.TipoServico.Departamento.NomeDepartamento" value="@ViewBag.Ticket.TipoServico.Departamento.NomeDepartamento" readonly="readonly">
+                <input type="hidden" id="idDepartamento" name="ticket.TipoServico.Departamento.Id" value="@ViewBag.Ticket.TipoServico.Departamento.Id" readonly="readonly">
+
+                <label for="Tipo">Tipo</label>
+                <input type="text" class="form-control" id="Tipo" name="ticket.TipoServico.NomeServico" value="@ViewBag.Ticket.TipoServico.NomeServico" readonly="readonly">
+
+                @*<label for="Equipe">Equipe de atendimento</label>
+                    <input type="text" class="form-control" id="Equipe" name="ticket.TipoServico.Departamento.NomeDepartamento" value="@ViewBag.Ticket.Departamento.NomeDepartamento" readonly="readonly">*@
+
+                <label for="Tecnico">Técnico Responsável</label>
+                <input type="text" class="form-control" id="Tecnico" name="ticket.TecnicoResponsavel" value="@ViewBag.Ticket.TecnicoResponsavel" readonly="readonly">
+            </div>
+
+
+        </div>
+        <hr />
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label for="Descricao"><b>Descrição</b></label>
+                <textarea name="ticket.Descricao" readonly="readonly" class="form-control">@ViewBag.Ticket.Descricao</textarea>
+
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label for="AdicionarComentario">Adicionar comentário</label>
+                <textarea rows="2" class="form-control" id="AdicionarComentario" name="ticket.comentariosTicket.Comentario" required></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+
+                <div class="col-md-2">
+                    @Html.ActionLink("Voltar", "Voltar", "Home", new { returnUrl = this.Request.UrlReferrer }, new { @class = "btn btn-success btn-block" })
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-2"></div>
+                @if (ViewBag.Ticket.Status == "Cancelado" || ViewBag.Ticket.Status == "Fechado Resolvido")
+                {
+                    <p>Não é mais possível atualizar esse ticket...</p>
+                }
+                else
+                {
+                    <div class="col-md-4">
+
+                        <select class="form-control" id="Status" name="ticket.StrAcao" required>
+                            <option value="" readonly="readonly" hidden>Selecione a ação</option>
+                            @if (ViewBag.Usuario.Funcao.Id == 3)
+                            {
+                                <option value="Atualizar" class="text-info">Atualizar</option>
+                            }
+                            @if (ViewBag.Ticket.Status == "Pendente" || ViewBag.Ticket.Status == "Resolvido")
+                            {
+                                <option value="Reativar" class="text-info">Reativar</option>
+                            }
+                            @if (ViewBag.Usuario.Funcao.Id != 3 && ViewBag.Ticket.Status == "Em resolução")
+                            {
+                                <option value="Resolver" class="text-success">Resolver</option>
+                            }
+                            @if (ViewBag.Usuario.Funcao.Id != 3 && ViewBag.Ticket.Status != "Pendente" && ViewBag.Ticket.Status != "Resolvido")
+                            {
+                                <option value="Atualizar" class="text-info">Atualizar</option>
+                                <option value="Pendente" class="text-info"> Pendente</option>
+                                <option value="Cancelar" class="text-danger">Cancelar</option>
+                            }
+
+
+
+                        </select>
+
+                    </div>
+                    <div class="col-md-2">
+                        <input type="submit" class="btn btn-warning btn-block" value="Atualizar" />
+                    </div>
+                }
+
+            </div>
+        </div>
+
+    </form>
+}
+@Html.Action("ComentariosTicket")
+@Html.Action("HistoricoTicket")
+@Html.Action("ExibeSlaTicket")
+@Html.Action("ServicosUtilizadosTicket")
+@Html.Action("IntensEstoqueUtilizadosTicket")

@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Relatorios";
+}
+
+@using (Html.BeginForm("Relatorio", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken();
+    <form>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-3">
+                    <label for="DataInicioAnalise">Início</label>
+                    <input class="form-control" id="DataInicioAnalise" type="date" name="analiseTicket.DataInicioAnalise" max="@DateTime.Now.Year" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="DataFinalAnalise">Término</label>
+                    <input class="form-control" id="DataFinalAnalise" type="date" name="analiseTicket.DataFinalAnalise" max="@DateTime.Today" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="DataFinalAnalise">Departamento</label>
+                    <select class="form-control" name="analiseTicket.GetTicket.TipoServico.Departamento.NomeDepartamento">
+                        <option value="">Todos</option>
+                        @foreach (var Departamento in ViewBag.Departamento)
+                        {
+                            <option value="@Departamento.NomeDepartamento">@Departamento.NomeDepartamento</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="TipoAnalise">Tipo do Relatório</label>
+                    <select class="form-control" name="analiseTicket.StrAcao" required>
+                        <option value="" hidden disabled>Selecione</option>
+                        <option value="Abertos">Chamados Abertos</option>
+                        <option value="Violados">Chamados Violados</option>
+                        <option value="Resolvidos">Chamados Resolvidos</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-3">
+                    <input type="submit" value="Gerar Relatório" class="btn btn-secondary" />
+                </div>
+            </div>
+        </div>
+    </form>
+}

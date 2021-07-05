@@ -1,0 +1,137 @@
+﻿
+@{
+    ViewBag.Title = "SLAs";
+}
+
+<h2>Todos os SLA's</h2>
+
+<div class="form-group">
+    <div class="form-row">
+        <div class="col-md-10">
+            <form action="~/Home/SLAs" method="post">
+                @Html.AntiForgeryToken()
+                <div class="input-group">
+                    <input class="form-control" name="strBusca" type="text" placeholder="Pesquisar..." aria-label="Pesquisar">
+                    <div class="input-group-append">
+                        <button class="btn btn-info" type="submit"><i class="fa fa-search"></i>Pesquisar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@if (ViewBag.SLA != null)
+{
+    int Violados = 0,
+       Ok = 0,
+       Mes = 0,
+       VioladosMes = 0,
+       NaoViolados = 0,
+       TotalGeral = 0,
+       VioladosMesAnterior = 0;
+
+
+    foreach (var item in ViewBag.SLA)
+    {
+        if (item.SlaTicket.Status == "VIOLADO")
+        {
+            Violados++;
+        }
+        if (item.SlaTicket.Status == "Ok")
+        {
+            Ok++;
+        }
+        if (item.DataCadastro.Month == DateTime.Now.Month)
+        {
+            Mes++;
+        }
+        if (item.SlaTicket.DataViolacao.Month == DateTime.Now.Month)
+        {
+            VioladosMes++;
+        }
+        if(item.SlaTicket.DataViolacao.Month == DateTime.Now.Month -1)
+        {
+            VioladosMesAnterior++;
+
+        }
+        if (item.SlaTicket.DataViolacao.Month != DateTime.Now.Month)
+        {
+            NaoViolados = Mes - Violados;
+
+        }
+
+
+    }
+
+
+    TotalGeral = ViewBag.Sla.Count;
+
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-3">
+                Chamados Violados (Total Geral): <font color="red"><b> @Violados</b></font>
+
+            </div>
+            <div class="col-md-3">
+                Chamados Não violados: <font color="green"><b>@Ok</b></font>
+            </div>
+            <div class="col-md-3">
+                Chamados no Mês:<font color="blue"><b> @Mes </b></font>
+            </div>
+            <div class="col-md-3">
+                Chamados violados nesse Mês: <b>@VioladosMes</b>
+            </div>
+            <div class="col-md-3">
+                Chamados não violados nesse Mês: <b>@NaoViolados</b>
+            </div>
+            <div class="col-md-3">
+                Chamados violados no mês anterior: <font color="red"><b> @VioladosMesAnterior </b></font>
+            </div>
+            <div class="col-md-3">
+                Quantidade Total de Chamados: <b>@TotalGeral</b>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="table-responsive">
+
+    <table class="table table-bordred table-hover table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Ticket</th>
+                <th>Início</th>
+                <th>Status</th>
+                <th>Data limite</th>
+                <th>Data Violação</th>
+                <th>Motivo</th>
+            </tr>
+        </thead>
+        @if (ViewBag.SLA != null)
+        {
+            <tbody>
+                @foreach (var item in ViewBag.SLA)
+                {
+                    <tr>
+                        <td>@Html.ActionLink((string)item.CodigoTicket, "Ticket", new { id = item.CodigoTicket })</td>
+                        <td>@item.DataCadastro</td>
+                        <td>@item.SlaTicket.Status</td>
+                        <td>@item.SlaTicket.DataPrevista</td>
+                        @if (Convert.ToString(item.SlaTicket.DataViolacao) == "01/01/0001 00:00:00")
+                        {
+                            <td></td>
+                        }
+                        else
+                        {
+                            <td>@item.SlaTicket.DataViolacao</td>
+
+                        }
+                        <td>@item.SlaTicket.Motivo</td>
+                    </tr>
+                }
+            </tbody>
+        }
+
+    </table>
+</div>

@@ -1,0 +1,43 @@
+﻿@{
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @*bootstrap Core*@
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @*jQuery Core*@
+    @Scripts.Render("~/bundles/jquery")
+
+</head>
+
+<body>
+
+    @if (ViewBag.Historico != null)
+    {
+        <div class="my-3 p-3 bg-white rounded box-shadow">
+            <h4 class="border-bottom border-gray pb-2 mb-0">Histórico</h4>
+            @foreach (var item in ViewBag.Historico)
+            {
+                <div class="clearfix">
+                    <p><strong>Data:</strong> @item.DataAtualizacao</p>
+                    <p><strong>Status:</strong> @item.Status <strong>Status anterior:</strong> @item.StatusAnterior </p>
+                    <p><strong>Equipe de Atendimento:</strong> @item.FilaDeAtendimento</p>
+                    <p><strong>Técnico Responsável:</strong>  @item.TecnicoResponsavel</p>
+                    <p><strong>Prioridade:</strong> @item.Prioridade </p>
+
+                    <p><strong>Comentário:</strong> @item.ComentariosTicket.Comentario </p>
+
+                    <hr />
+                </div>
+            }
+
+        </div>
+    }
+</body>
+</html>

@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A9D9B6AC-FF39-41EC-9D04-299599EAFD5C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Core</RootNamespace>
+    <AssemblyName>Core</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Npgsql, Version=4.0.2.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.4.0.2\lib\net451\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="Quartz, Version=3.0.7.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Quartz.3.0.7\lib\net452\Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.0\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Aplicacao\Resultado.cs" />
+    <Compile Include="Controle\Fachada.cs" />
+    <Compile Include="DAOs\Analises\AnaliseTicketDAO.cs" />
+    <Compile Include="DAOs\ChamadosD\ServicosUtilizadosDAO.cs" />
+    <Compile Include="DAOs\EstoqueD\AlteracaoEstoqueDAO.cs" />
+    <Compile Include="DAOs\TipificacaoD\ItemServicoDAO.cs" />
+    <Compile Include="DAOs\UsuarioD\EnderecoDAO.cs" />
+    <Compile Include="DAOs\EstoqueD\EstoqueDAO.cs" />
+    <Compile Include="DAOs\TipificacaoD\GrupoAtendimentoDAO.cs" />
+    <Compile Include="DAOs\ChamadosD\ComentariosTicketDAO.cs" />
+    <Compile Include="DAOs\UsuarioD\DepartamentoDAO.cs" />
+    <Compile Include="DAOs\ChamadosD\FeedbackDAO.cs" />
+    <Compile Include="DAOs\UsuarioD\FuncaoDAO.cs" />
+    <Compile Include="DAOs\ChamadosD\HistoricoTicketDAO.cs" />
+    <Compile Include="DAOs\TipificacaoD\PrioridadeDAO.cs" />
+    <Compile Include="DAOs\ChamadosD\SlaTicketDAO.cs" />
+    <Compile Include="DAOs\ChamadosD\TicketDAO.cs" />
+    <Compile Include="DAOs\TipificacaoD\TipoServicoDAO.cs" />
+    <Compile Include="DAOs\UsuarioD\UsuarioDAO.cs" />
+    <Compile Include="Jobs\JobEncerrarTicket.cs" />
+    <Compile Include="Jobs\JobScheduler.cs" />
+    <Compile Include="Jobs\JobVerificaSlaViolado.cs" />
+    <Compile Include="Negocio\stAnalise.cs" />
+    <Compile Include="Negocio\stCalculosSLA\StVerificaSlaViolado.cs" />
+    <Compile Include="Negocio\stChamados\StAtualizaTicket.cs" />
+    <Compile Include="Negocio\stChamados\stCalculaSLA.cs" />
+    <Compile Include="Negocio\stChamados\StEncerrarTicket.cs" />
+    <Compile Include="Negocio\stChamados\stNovoChamado.cs" />
+    <Compile Include="Negocio\stChamados\stResolverTicket.cs" />
+    <Compile Include="Negocio\stEstoque\stAlteracaoEstoqueChamado.cs" />
+    <Compile Include="Negocio\stEstoque\stAtualizaQuantidadeEstoque.cs" />
+    <Compile Include="Negocio\stEstoque\stBaixaEstoqueChamado.cs" />
+    <Compile Include="Negocio\stEstoque\stValidaItemEstoque.cs" />
+    <Compile Include="Negocio\stEstoque\stVerificaEanExistente.cs" />
+    <Compile Include="Negocio\stFeedback\stAtualizaFeedback.cs" />
+    <Compile Include="Negocio\stGenerica\stComplementaDataCadastro.cs" />
+    <Compile Include="Negocio\stChamados\stGeraNumeroChamado.cs" />
+    <Compile Include="Negocio\stServicos\stAtribuiTicketServico.cs" />
+    <Compile Include="Negocio\stTipificacao\stAdicionaItemServico.cs" />
+    <Compile Include="Negocio\stUsuarios\StAlterarDadosUsuario.cs" />
+    <Compile Include="Negocio\stUsuarios\StAlterarSenha.cs" />
+    <Compile Include="Negocio\stUsuarios\StValidaUsuarioAtivo.cs" />
+    <Compile Include="Negocio\stTipificacao\StValidaCamposServico.cs" />
+    <Compile Include="Negocio\stTipificacao\StDesativaServico.cs" />
+    <Compile Include="Negocio\stTipificacao\StVerificaServicoExistente.cs" />
+    <Compile Include="Negocio\stUsuarios\StInfoMinimaUsuario.cs" />
+    <Compile Include="Negocio\stUsuarios\StValidarEmail.cs" />
+    <Compile Include="Negocio\stUsuarios\StValidarSenha.cs" />
+    <Compile Include="Negocio\stUsuarios\StVerificaUsuarioExistente.cs" />
+    <Compile Include="Util\BDInfo.cs" />
+    <Compile Include="Util\ConexaoDB.cs" />
+    <Compile Include="Core\IDAO.cs" />
+    <Compile Include="Core\IFachada.cs" />
+    <Compile Include="Core\IStrategy.cs" />
+    <Compile Include="DAOs\AbstractDAO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dominio\Dominio.csproj">
+      <Project>{fe753216-b7f8-4fba-a79e-26bf0233d418}</Project>
+      <Name>Dominio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

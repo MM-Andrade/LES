@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "EditarProduto";
+}
+
+<h2>Editar produto: @ViewBag.Estoque.Item</h2>
+@using (Html.BeginForm("EditarProduto", "Home", FormMethod.Post))
+{
+    <form>
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-4">
+                    <label for="Nome">Item</label>
+                    <input type="hidden" name="Estoque.Id" value="@ViewBag.Estoque.Id" readonly />
+                    <input class="form-control" id="Item" type="text" placeholder="Nome" name="Estoque.Item" value="@ViewBag.Estoque.Item" readonly>
+                </div>
+                <div class="col-md-4">
+                    <label for="Sobrenome">Quantidade</label>
+                    <input class="form-control" id="QuantidadeEstoque" type="text" placeholder="Quantidade" name="Estoque.QuantidadeEstoque" value="@ViewBag.Estoque.QuantidadeEstoque">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="Unidade">Unidade</label>
+                    <input class="form-control" id="Unidade" type="text" placeholder="unidade" name="Estoque.Unidade" value="@ViewBag.Estoque.Unidade" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-4">
+                    <label for="codigoean">EAN:</label>
+                    <input class="form-control" id="codigoean" type="text" placeholder="EAN" name="Estoque.codigoean" value="@ViewBag.Estoque.codigoean" readonly>
+                </div>
+                <div class="col-md-4">
+                    <label for="Departamento">Departamento</label>
+                    <input class="form-control" id="Departamento" type="text" placeholder="Departamento" name="Estoque.Departamento.Id" value="@ViewBag.Estoque.Departamento.Id" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-4">
+                    @Html.ActionLink("Voltar", "Voltar", "Home", new { returnUrl = this.Request.UrlReferrer }, new { @class = "btn btn-success btn-block" })
+                </div>
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-4">
+                    <input type="submit" class="btn btn-primary btn-block" value="Alterar" />
+                </div>
+            </div>
+        </div>
+    </form>
+}

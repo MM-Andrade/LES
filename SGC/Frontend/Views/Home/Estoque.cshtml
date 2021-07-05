@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Estoque";
+}
+
+<div class="form-group">
+    <div class="form-row">
+        <div class="col-lg-10">
+            <form action="~/Home/Estoque" method="post">
+                @Html.AntiForgeryToken()
+                <div class="input-group">
+                    <input class="form-control" name="StrBusca" type="text" placeholder="Pesquisar..." aria-label="Pesquisar">
+                    <div class="input-group-append">
+                        <button class="btn btn-info" type="submit"><i class="fa fa-search"></i>Pesquisar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <form>
+            <div class="col-lg-2">
+                @Html.ActionLink("Cadastrar Produto", "NovoProduto", null, new { @class = "btn icon-btn btn-primary" })
+            </div>
+        </form>
+    </div>
+</div>
+<div class="table-responsive">
+
+    <table class="table table-bordred table-hover table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Item</th>
+                <th>Quantidade</th>
+                <th>Unidade</th>
+                <th>EAN</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        @if (ViewBag.Estoque != null)
+        {
+            <tbody>
+                @foreach (var item in ViewBag.Estoque)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Item</td>
+                        <td>@item.QuantidadeEstoque</td>
+                        <td>@item.Unidade</td>
+                        <td>@item.codigoean</td>
+
+                        @*Ações*@
+                        <td>@Html.ActionLink("Visualizar", "InfoProduto", new { id = item.Id }, new { @class = "btn btn-warning" })</td>
+                        <td>@Html.ActionLink("Editar", "EditarProduto", new { id = item.Id }, new { @class = "btn btn-warning" })</td>
+                    </tr>
+                }
+            </tbody>
+        }
+
+    </table>
+</div>

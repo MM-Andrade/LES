@@ -1,0 +1,340 @@
+﻿
+@{
+    ViewBag.Title = "Cadastro de usuário";
+}
+
+@if (ViewBag.Usuario == null)
+{ 
+    <form action="/Home/NovoUsuario" method="post">
+        @Html.AntiForgeryToken()
+        <h3>Novo Usuário</h3>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="Nome">Nome</label>
+                    <input class="form-control" id="Nome" type="text" placeholder="Nome" name="usuario.Nome">
+                </div>
+                <div class="col-md-6">
+                    <label for="Sobrenome">Sobrenome</label>
+                    <input class="form-control" id="Sobrenome" type="text" placeholder="Sobrenome" name="usuario.Sobrenome">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="Genero">Gênero</label>
+                    <select class="form-control" id=" Genero" name="usuario.Genero">
+                        <option value="Feminino">Feminino</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="" selected disabled hidden>Selecione...</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="DataNascimento">Data de Nascimento</label>
+                    <input class="form-control" id="DataNascimento" type="date" placeholder="Data de Nascimento" name="usuario.DataNascimento" min="1950-01-01">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="GrupoAtendimento">Departamento</label>
+                    <select class="form-control" id="GrupoAtendimento" name="usuario.GrupoAtendimento.Id">
+                        @foreach (var GrupoAtendimento in ViewBag.GrupoAtendimento)
+                        {
+                            <option value="@GrupoAtendimento.Id"> @GrupoAtendimento.Id @GrupoAtendimento.NomeGrupo</option>
+                        }
+                        <option value="" selected disabled hidden>Selecione...</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="Funcao">Funcão</label>
+                    <select class="form-control" id="Funcao" name="usuario.Funcao.Id">
+                        @foreach (var funcao in ViewBag.Funcao)
+                        {
+                            <option value="@funcao.Id">@funcao.NomeFuncao</option>
+                        }
+                        <option value="" selected disabled hidden>Selecione...</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-3">
+                    <label for="StatusUsuario">Ativo</label>
+                    <select class="form-control" id=" StatusLivro" name="usuario.UsuarioAtivo">
+                        <option value="True">Ativo</option>
+                        <option value="False">Inativo</option>
+                        <option value="" selected disabled hidden>Selecione...</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input class="form-control" id="email" type="email" placeholder="email" name="usuario.Email">
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="senha">Senha</label>
+                    <input class="form-control" id="senha" type="password" placeholder="Senha" name="usuario.Senha">
+                </div>
+                <div class="col-md-6">
+                    <label for="confirmasenha">Confirme a Senha</label>
+                    <input class="form-control" id="confirmasenha" type="password" placeholder="Confirme a senha" name="usuario.ConfirmarSenha">
+                </div>
+            </div>
+        </div>
+        <hr />
+
+        <div class="form-group">
+            <h3>Endereço</h3>
+            <div class="form-row">
+                <div class="col-md-2">
+                    <label for="cep">CEP</label>
+                    <input class="form-control" id="cep" type="text" placeholder="CEP" name="usuario.Endereco.Cep">
+                </div>
+                <div class="col-md-4">
+                    <label for="rua">Rua</label>
+                    <input class="form-control" id="rua" type="text" placeholder="Rua" name="usuario.Endereco.Rua">
+                </div>
+                <div class="col-md-2">
+                    <label for="numero">Número</label>
+                    <input class="form-control" id="numero" type="text" placeholder="Número" name="usuario.Endereco.Numero">
+                </div>
+                <div class="col-md-4">
+                    <label for="bairro">Bairro</label>
+                    <input class="form-control" id="bairro" type="text" placeholder="Bairro" name="usuario.Endereco.Bairro">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-4">
+                    <label for="Complemento">Complemento</label>
+                    <input class="form-control" id="Complemento" type="text" placeholder="Complemento" name="usuario.Endereco.Complemento">
+                </div>
+                <div class="col-md-4">
+                    <label for="cidade">Cidade</label>
+                    <input class="form-control" id="cidade" type="text" placeholder="Cidade" name="usuario.Endereco.Cidade">
+                </div>
+                <div class="col-md-2">
+                    <label for="estado">Estado</label>
+                    <select class="form-control" id="estado" name="usuario.Endereco.Estado">
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                        <option value="" selected disabled hidden>Selecione...</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-4">
+                    @Html.ActionLink("Voltar", "Voltar", "Home", new { returnUrl = this.Request.UrlReferrer }, new { @class = "btn btn-success btn-block" })
+                </div>
+                <div class="col-md-4">
+                    <input type="submit" class="btn btn-primary btn-block" value="Cadastrar" />
+                </div>
+            </div>
+        </div>
+    </form>
+
+}
+else
+{
+
+    <form action="/Home/NovoUsuario" method="post">
+        @Html.AntiForgeryToken()
+        <h3>Novo Usuário</h3>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="Nome">Nome</label>
+                    <input class="form-control" id="Nome" type="text" placeholder="Nome" name="usuario.Nome" value="@ViewBag.Usuario.Nome">
+                </div>
+                <div class="col-md-6">
+                    <label for="Sobrenome">Sobrenome</label>
+                    <input class="form-control" id="Sobrenome" type="text" placeholder="Sobrenome" name="usuario.Sobrenome" value="@ViewBag.Usuario.Sobrenome">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="Genero">Gênero</label>
+                    <select class="form-control" id=" Genero" name="usuario.Genero">
+                        <option value="Feminino">Feminino</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="@ViewBag.Usuario.Genero" selected disabled hidden>Selecione...</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="DataNascimento">Data de Nascimento</label>
+                    <input class="form-control" id="DataNascimento" type="date" placeholder="Data de Nascimento" name="usuario.DataNascimento" min="1950-01-01" value="@ViewBag.Usuario.DataNascimento">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="GrupoAtendimento">Departamento</label>
+                    <select class="form-control" id="GrupoAtendimento" name="usuario.GrupoAtendimento.Id">
+                        @foreach (var GrupoAtendimento in ViewBag.GrupoAtendimento)
+                        {
+                            <option value="@GrupoAtendimento.Id"> @GrupoAtendimento.Id @GrupoAtendimento.NomeGrupo</option>
+                        }
+                        <option value="" selected disabled hidden>Selecione...</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="Funcao">Funcão</label>
+                    <select class="form-control" id="Funcao" name="usuario.Funcao.Id">
+                        @foreach (var funcao in ViewBag.Funcao)
+                        {
+                            <option value="@funcao.Id">@funcao.NomeFuncao</option>
+                        }
+                        <option value="@ViewBag.Usuario.Funcao.Id" selected disabled hidden>Selecione</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-3">
+                    <label for="StatusUsuario">Ativo</label>
+                    <select class="form-control" id=" StatusLivro" name="usuario.UsuarioAtivo">
+                        <option value="True">Ativo</option>
+                        <option value="False">Inativo</option>
+                        <option value="@ViewBag.Usuario.UsuarioAtivo" selected disabled hidden>Selecione</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input class="form-control" id="email" type="email" placeholder="email" name="usuario.Email" value="@ViewBag.Usuario.Email">
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="senha">Senha</label>
+                    <input class="form-control" id="senha" type="password" placeholder="Senha" name="usuario.Senha" value="@ViewBag.Usuario.Senha">
+                </div>
+                <div class="col-md-6">
+                    <label for="confirmasenha">Confirme a Senha</label>
+                    <input class="form-control" id="confirmasenha" type="password" placeholder="Confirme a senha" name="usuario.ConfirmarSenha" value="@ViewBag.Usuario.ConfirmarSenha">
+                </div>
+            </div>
+        </div>
+        <hr />
+
+        <div class="form-group">
+            <h3>Endereço</h3>
+            <div class="form-row">
+                <div class="col-md-2">
+                    <label for="cep">CEP</label>
+                    <input class="form-control" id="cep" type="text" placeholder="CEP" name="usuario.Endereco.Cep" value="@ViewBag.Usuario.Endereco.Cep">
+                </div>
+                <div class="col-md-4">
+                    <label for="rua">Rua</label>
+                    <input class="form-control" id="rua" type="text" placeholder="Rua" name="usuario.Endereco.Rua" value="@ViewBag.Usuario.Endereco.Rua">
+                </div>
+                <div class="col-md-2">
+                    <label for="numero">Número</label>
+                    <input class="form-control" id="numero" type="text" placeholder="Número" name="usuario.Endereco.Numero" value="@ViewBag.Usuario.Endereco.Numero">
+                </div>
+                <div class="col-md-4">
+                    <label for="bairro">Bairro</label>
+                    <input class="form-control" id="bairro" type="text" placeholder="Bairro" name="usuario.Endereco.Bairro" value="@ViewBag.Usuario.Endereco.Bairro">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-4">
+                    <label for="Complemento">Complemento</label>
+                    <input class="form-control" id="Complemento" type="text" placeholder="Complemento" name="usuario.Endereco.Complemento" value="@ViewBag.Usuario.Endereco.Complemento">
+                </div>
+                <div class="col-md-4">
+                    <label for="cidade">Cidade</label>
+                    <input class="form-control" id="cidade" type="text" placeholder="Cidade" name="usuario.Endereco.Cidade" value="@ViewBag.Usuario.Endereco.Cidade">
+                </div>
+                <div class="col-md-2">
+                    <label for="estado">Estado</label>
+                    <select class="form-control" id="estado" name="usuario.Endereco.Estado" value="@ViewBag.Usuario.Endereco.Estado">
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                        <option value="" selected disabled hidden>Selecione...</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-4">
+                    @Html.ActionLink("Voltar", "Voltar", "Home", new { returnUrl = this.Request.UrlReferrer }, new { @class = "btn btn-success btn-block" })
+                </div>
+                <div class="col-md-4">
+                    <input type="submit" class="btn btn-primary btn-block" value="Cadastrar" />
+                </div>
+            </div>
+        </div>
+    </form>
+} @* else*@

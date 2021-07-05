@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>@ViewBag.Title - Help ME! - Sistema de gestão de chamados</title>
+    <link rel="shortcut icon" href="~/images/icone.ico" />
+
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @*bootstrap Core*@
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @*jQuery Core*@
+    @Scripts.Render("~/bundles/jquery")
+
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Help Me!</a>
+        <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="@Url.Action("Sair","Home")">Sair</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            @if (Convert.ToInt32(Session["idpermissao"]) == 1)
+            {
+                @Html.Partial("_MenuLateralAdmin")
+            }
+            else if (Convert.ToInt32(Session["idpermissao"]) == 2)
+            {
+                @Html.Partial("_MenuLateralTecnico")
+            }
+            else if (Convert.ToInt32(Session["idpermissao"]) == 3)
+            {
+                @Html.Partial("_MenuLateralUsuario")
+            }
+
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-1 px-0">
+                @if (TempData["MensagemErro"] != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        @TempData["MensagemErro"]
+                    </div>
+                }
+
+                @if (TempData["MensagemSucesso"] != null)
+                {
+                    <div class="alert alert-success" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        @TempData["MensagemSucesso"]
+                    </div>
+                }
+                <div class="col-lg-12">
+                    <!-- Breadcrumbs-->
+                    @RenderBody()
+                </div>
+            </main>
+        </div>
+    </div>
+
+</body>
+</html>

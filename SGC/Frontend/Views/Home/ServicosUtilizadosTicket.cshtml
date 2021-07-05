@@ -1,0 +1,51 @@
+﻿@{
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @*bootstrap Core*@
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @*jQuery Core*@
+    @Scripts.Render("~/bundles/jquery")
+
+</head>
+
+<body>
+
+    @if (ViewBag.ServicosUtilizados != null)
+    {
+        <div class="col-12">
+            <div class="my-3 p-3 bg-white rounded box-shadow">
+                <h4 class="border-bottom border-gray pb-2 mb-0">Serviços Utilizados</h4>
+
+                <!--Table-->
+                <table id="tablePreview" class="table-responsive">
+                    <!--Table head-->
+                    <thead>
+                        <tr>
+                            <th>Serviço</th>
+                        </tr>
+                    </thead>
+                    <!--Table head-->
+                    <!--Table body-->
+                    @foreach (var item in ViewBag.ServicosUtilizados)
+                    {
+                        <tbody>
+                            <tr>
+                                <td>@item.GetTicket.TipoServico.NomeServico</td>
+                            </tr>
+                        </tbody>
+                    }
+                    <!--Table body-->
+                </table>
+            </div>
+        </div>
+    }
+</body>
+</html>

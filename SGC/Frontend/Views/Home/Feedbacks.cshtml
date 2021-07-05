@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Feedbacks";
+}
+
+<h2>Feedbacks</h2>
+<hr />
+<div class="table-responsive">
+    <table class="table table-bordred table-hover table-striped">
+        <thead class="thead-dark">
+            <tr>
+
+                <th>Chamado</th>
+                <th>Data</th>
+                <th>Status</th>
+                <th>Tecnico Responsável</th>
+            </tr>
+        </thead>
+        @if (ViewBag.Feedbacks != null)
+        {
+            <tbody>
+                @foreach (var item in ViewBag.Feedbacks)
+                {
+                    <tr>
+                        <td>@Html.ActionLink((string)item.Ticket.CodigoTicket, "InfoFeedback", new { codigoticket = item.Ticket.CodigoTicket })</td>
+                        <td>@item.DataCadastro</td>
+                        <td>@item.Status</td>
+                        <td>@item.Ticket.TecnicoResponsavel</td>
+                    </tr>
+                }
+            </tbody>
+        }
+
+    </table>
+</div>

@@ -1,0 +1,49 @@
+﻿@{
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @*bootstrap Core*@
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @*jQuery Core*@
+    @Scripts.Render("~/bundles/jquery")
+
+    <link href="~/Content/comentarios.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+    @if (ViewBag.Comentarios != null)
+    {
+        <div class="my-3 p-3 bg-white rounded box-shadow">
+            <h4 class="border-bottom border-gray pb-2 mb-0">Comentários</h4>
+            @foreach (var item in ViewBag.Comentarios)
+            {
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" />
+                            </div>
+                            <div class="col-md-10">
+                                <p>
+                                <p class="float-left"><strong>@item.Usuario.Nome @item.Usuario.Sobrenome</strong> em @item.DataCadastro</p>
+                                </p>
+                                <div class="clearfix"></div>
+                                <p>@item.Comentario</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</body>
+</html>

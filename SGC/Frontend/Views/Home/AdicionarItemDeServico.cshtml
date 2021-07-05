@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Novo Item de Serviço";
+}
+
+<h2>Novo Item de Serviço</h2>
+
+@using (Html.BeginForm("AdicionarItemDeServico", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <form>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="Item">Item</label>
+                    <input class="form-control" id="Item" type="text" placeholder="Item de Serviço" name="itemServico.Item">
+                </div>
+                <div class="col-md-6">
+                    <label for="Departamento">Departamento</label>
+                    <select class="form-control" id="Departamento" name="itemServico.Dpto.Id">
+                        @foreach (var departamento in ViewBag.Departamento)
+                        {
+                            <option value="@departamento.Id">@departamento.NomeDepartamento</option>
+                        }
+                        <option value="" selected hidden disabled>Selecione o departamento responsável</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-4">
+                    @Html.ActionLink("Voltar", "Voltar", "Home", new { returnUrl = this.Request.UrlReferrer }, new { @class = "btn btn-success btn-block" })
+                </div>
+                <div class="col-md-4">
+                    <input type="submit" class="btn btn-primary btn-block" value="Cadastrar" />
+                </div>
+            </div>
+        </div>
+    </form>
+}

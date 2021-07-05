@@ -1,0 +1,63 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Login - Help ME! - Sistema de gestão de chamados</title>
+    <link rel="shortcut icon" href="~/images/icone.ico" />
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/Login")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+    <form class="form-signin">
+        <div class="text-center mb-4">
+            <img class="mb-4" src="~/images/helpmelogo.png" alt="" width="200" height="200">
+            <p>Entre com seu email e senha</p>
+        </div>
+        @if (TempData["MensagemErro"] != null)
+        {
+            <div class="form-label-group">
+                <p align="center" class="text-danger"> @TempData["MensagemErro"]</p>
+            </div>
+        }
+        @if (TempData["MensagemSucesso"] != null)
+        {
+            <div class="form-label-group">
+                <p align="center" class="text-success"> @TempData["MensagemSucesso"]</p>
+            </div>
+        }
+        <div class="form-label-group">
+            <input type="email" name="usuario.Email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+            <label for="inputEmail">Email</label>
+        </div>
+
+        <div class="form-label-group">
+            <input type="password" id="inputPassword" name="usuario.Senha" class="form-control" placeholder="Senha" required>
+            <label for="inputPassword">Senha</label>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+        <p class="mt-5 mb-3 text-muted text-center">&copy; 2018</p>
+    </form>
+    }
+</body>
+@*jQuery Core*@
+@Scripts.Render("~/BundleScript/jquery")
+
+<!-- plugin JavaScript-->
+@Scripts.Render("~/BundleScripts/jquery-easing")
+</html>

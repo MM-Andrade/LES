@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "InfoFeedback";
+}
+
+<h2>Informação do feedback do Ticket: <b class="text-success">@Html.ActionLink((string)ViewBag.Feedbacks.Ticket.CodigoTicket, "Ticket", new { id = ViewBag.Feedbacks.Ticket.CodigoTicket })</b></h2>
+
+<div class="row">
+    <div class="form-group col-md-4">
+        <label for="Ticket">Ticket</label>
+        
+        <input type="text" class="form-control" id="Ticket" value="@ViewBag.Feedbacks.Ticket.CodigoTicket" readonly="readonly">
+    </div>
+    <div class="form-group col-md-4">
+        <label for="DataResolucao">Data </label>
+        <input type="text" class="form-control" id="DataResolucao" value="@ViewBag.Feedbacks.DataCadastro" readonly="readonly">
+    </div>
+    <div class="form-group col-md-4">
+        <label for="Status">Status do Feedback</label>
+        <input type="text" class="form-control" id="Status" value="@ViewBag.Feedbacks.Status" readonly="readonly">
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-4">
+        <label for="TecnicoResponsavel">Técnico Responsável</label>
+        <input type="text" class="form-control" id="TecnicoResponsavel" value="@ViewBag.Feedbacks.Ticket.TecnicoResponsavel" readonly="readonly">
+    </div>
+    <div class="form-group col-md-4">
+        <label for="Atendente">Nota do Atendente</label>
+        <input type="text" class="form-control" id="Atendente" value="@ViewBag.Feedbacks.NotaAtendente" readonly="readonly">
+    </div>
+    <div class="form-group col-md-4">
+        <label for="Status">Nota do Atendimento</label>
+        <input type="text" class="form-control" id="Status" value="@ViewBag.Feedbacks.NotaAtendimento" readonly="readonly">
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group col-lg-12">
+        <label for="Comentario"><b>Comentário</b></label>
+        <textarea id="Comentario" class="form-control" readonly="readonly">@ViewBag.Feedbacks.Comentarios</textarea>
+
+    </div>
+</div>
+<div class="col-md-2">
+    @Html.ActionLink("Voltar", "Voltar", "Home", new { returnUrl = this.Request.UrlReferrer }, new { @class = "btn btn-success btn-block" })
+</div>

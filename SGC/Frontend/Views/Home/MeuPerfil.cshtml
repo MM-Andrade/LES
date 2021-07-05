@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "MeuPerfil";
+}
+
+<form action="/Home/NovoUsuario" method="get">
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-4">
+                <label for="Nome">Nome</label>
+                <input class="form-control" id="Nome" type="text" placeholder="Nome" name="usuario.Nome" value="@ViewBag.Usuarios.Nome" disabled>
+            </div>
+            <div class="col-md-4">
+                <label for="Sobrenome">Sobrenome</label>
+                <input class="form-control" id="Sobrenome" type="text" placeholder="Sobrenome" name="usuario.Sobrenome" value="@ViewBag.Usuarios.Sobrenome" disabled>
+            </div>
+            <div class="col-md-4">
+                <label for="DataCadastro">Cadastrado em:</label>
+                <input class="form-control" id="DataCadastro" type="text" placeholder="Data de Nascimento" name="usuario.DataCadastro" value="@ViewBag.Usuarios.DataCadastro" disabled>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-6">
+                <label for="Genero">Gênero</label>
+                <input class="form-control" id="Genero" type="text" placeholder="Genero" name="usuario.Genero" value="@ViewBag.Usuarios.Genero" disabled>
+            </div>
+            <div class="col-md-6">
+                <label for="DataNascimento">Data de Nascimento</label>
+                <input class="form-control" id="DataNascimento" type="text" placeholder="Data de Nascimento" name="usuario.DataNascimento" value="@ViewBag.Usuarios.DataNascimento" disabled>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-6">
+                <label for="Departamento">Departamento</label>
+                <input class="form-control" id="Departamento" type="text" placeholder="Departamento" name="usuario.Departamento" value="@ViewBag.Usuarios.GrupoAtendimento.Departamento.NomeDepartamento" disabled>
+            </div>
+            <div class="col-md-6">
+                <label for="Funcao">Funcão</label>
+                <input class="form-control" id="Funcao" type="text" placeholder="Funcao" name="usuario.Funcao" value="@ViewBag.Usuarios.Funcao.NomeFuncao" disabled>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-4">
+                <label for="email">Email</label>
+                <input class="form-control" id="email" type="email" placeholder="email" name="usuario.Email" value="@ViewBag.Usuarios.Email" disabled>
+            </div>
+            <div class="col-md-4">
+                <label for="Status">Usuário Ativo</label>
+                <input class="form-control" id="Status" type="text" placeholder="Status" name="usuario.UsuarioAtivo" value="@ViewBag.Usuarios.UsuarioAtivo.ToString()" disabled>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <h3>Endereço</h3>
+        <div class="form-row">
+            <div class="col-md-2">
+                <label for="cep">CEP</label>
+                <input class="form-control" id="cep" type="text" placeholder="CEP" name="usuario.Endereco.Cep" value="@ViewBag.Usuarios.Endereco.Cep" disabled>
+            </div>
+            <div class="col-md-4">
+                <label for="rua">Rua</label>
+                <input class="form-control" id="rua" type="text" placeholder="Rua" name="usuario.Endereco.Rua" value="@ViewBag.Usuarios.Endereco.Rua" disabled>
+            </div>
+            <div class="col-md-2">
+                <label for="numero">Número</label>
+                <input class="form-control" id="numero" type="text" placeholder="Número" name="usuario.Endereco.Numero" value="@ViewBag.Usuarios.Endereco.Numero"disabled>
+            </div>
+            <div class="col-md-4">
+                <label for="bairro">Bairro</label>
+                <input class="form-control" id="bairro" type="text" placeholder="Bairro" name="usuario.Endereco.Bairro" value="@ViewBag.Usuarios.Endereco.Bairro" disabled>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-4">
+                <label for="Complemento">Complemento</label>
+                <input class="form-control" id="Complemento" type="text" placeholder="Complemento" name="usuario.Endereco.Cidade" value="@ViewBag.Usuarios.Endereco.Cidade"disabled>
+            </div>
+            <div class="col-md-4">
+                <label for="cidade">Cidade</label>
+                <input class="form-control" id="cidade" type="text" placeholder="Cidade" name="usuario.Endereco.Cidade" value="@ViewBag.Usuarios.Endereco.Cidade"disabled>
+            </div>
+            <div class="col-md-2">
+                <label for="estado">Estado</label>
+                <input class="form-control" id="estado" name="usuario.Endereco.Estado" value="@ViewBag.Usuarios.Endereco.Estado" disabled/>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-4">
+                @Html.ActionLink("Voltar", "Voltar", "Home", new { returnUrl = this.Request.UrlReferrer }, new { @class = "btn btn-success btn-block" })
+            </div>
+            <div class="col-md-4">
+                @* <input type="reset" class="btn btn-danger btn-block" value="Limpar" />*@
+            </div>
+            <div class="col-md-4">
+                @Html.ActionLink("Atualizar Informações", "EditarUsuario", new { id = ViewBag.Usuarios.Id }, new { @class = "btn icon-btn btn-primary" })
+            </div>
+        </div>
+    </div>
+</form>

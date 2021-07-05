@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "AtualizarFeedback";
+}
+
+<h2>Atualizar feedback</h2>
+@using (Html.BeginForm("AtualizarFeedback", "Home", FormMethod.Post))
+{
+<form>
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="Ticket">Ticket</label>
+            <input type="hidden" value="@ViewBag.Feedbacks.Id" name="feedback.Id" />
+            <input type="hidden" value="@ViewBag.Feedbacks.Ticket.Id" name="feedback.Ticket.Id" />
+            <input type="text" class="form-control" id="Ticket" value="@ViewBag.Feedbacks.Ticket.CodigoTicket" name="feedback.Ticket.CodigoTicket" readonly="readonly">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="DataResolucao">Data de Resolução</label>
+            <input type="text" class="form-control" id="DataResolucao" value="@ViewBag.Feedbacks.DataCadastro" readonly="readonly">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="Status">Status do Feedback</label>
+            <input type="text" class="form-control" id="Status" value="@ViewBag.Feedbacks.Status" readonly="readonly">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="TecnicoResponsavel">Técnico Responsável</label>
+            <input type="text" class="form-control" id="TecnicoResponsavel" value="@ViewBag.Feedbacks.Ticket.TecnicoResponsavel" readonly="readonly">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="Atendente">Nota do Atendente:</label>
+            <select class="form-control" required name="feedback.NotaAtendente">
+                <option value="" disabled selected hidden>Selecione</option>
+                <option value="0">0 - Péssimo</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 - Médio</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10 - Excelente</option>
+            </select>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="Atendente">Nota do Atendimento:</label>
+            <select class="form-control" required name="feedback.NotaAtendimento">
+                <option value="" disabled selected hidden>Selecione</option>
+                <option value="0">0 - Péssimo</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 - Médio</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10 - Excelente</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-lg-12">
+            <label for="Comentario"><b>Comentário</b></label>
+            <textarea id="Comentario" class="form-control" required name="feedback.Comentarios"></textarea>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            @Html.ActionLink("Voltar", "Voltar", "Home", new { returnUrl = this.Request.UrlReferrer }, new { @class = "btn btn-success btn-block" })
+        </div>
+        <div class="col-md-2">
+            <input type="submit" value="Salvar Feedback" class="btn btn-secondary btn-block" />
+        </div>
+
+    </div>
+
+
+</form>
+}
+

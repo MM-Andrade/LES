@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "ItensDeServico";
+}
+
+<h2>Itens de Serviços</h2>
+
+<div class="form-group">
+    <div class="form-row">
+        <div class="col-md-10">
+            <form action="~/Home/ItensDeServico" method="post">
+                @Html.AntiForgeryToken()
+                <div class="input-group">
+                    <input class="form-control" name="strBusca" type="text" placeholder="Pesquisar..." aria-label="Pesquisar">
+                    <div class="input-group-append">
+                        <button class="btn btn-info" type="submit"><i class="fa fa-search"></i>Pesquisar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <form>
+            <div class="col-md-2">
+                @Html.ActionLink("Cadastrar item", "AdicionarItemDeServico", null, new { @class = "btn icon-btn btn-primary" })
+            </div>
+        </form>
+    </div>
+</div>
+<div class="table-responsive">
+
+    <table class="table table-bordred table-hover table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Departamento</th>
+                <th>Serviço</th>
+                <th></th>
+            </tr>
+        </thead>
+        @if (ViewBag.Servicos != null)
+        {
+            <tbody>
+                @foreach (var item in ViewBag.Servicos)
+                {
+                    <tr>
+                        <td>@item.Dpto.NomeDepartamento</td>
+                        <td>@item.Item</td>
+                        @*Ações*@
+                        <td>@Html.ActionLink("Excluir", "ExcluirItemdeServico", new { id = item.Id }, new { @class = "btn btn-danger" })</td>
+                    </tr>
+                }
+            </tbody>
+        }
+
+    </table>
+</div>

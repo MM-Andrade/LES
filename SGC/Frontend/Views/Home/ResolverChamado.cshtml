@@ -1,0 +1,180 @@
+﻿@model Dominio.Ticket
+
+@{
+    ViewBag.Title = "ResolverChamado";
+}
+
+<link href="~/Content/chosen.min.css" rel="stylesheet" />
+<script src="~/Scripts/chosen.jquery.min.js"></script>
+
+<script>
+    $(function () {
+        //dropdown de itens de estoque
+        $("#ItensEstoque").chosen({
+            disable_search: true
+        });
+    });
+</script>
+
+<script>
+    $(function () {
+        //dropdown de itens de servico
+        $("#ItemServico").chosen({
+            disable_search: false
+        });
+    });
+</script>
+
+@*<script>
+    function submitFormServico() {
+        var ItensServico = new Array;
+        $("#ItemServico option").each(function () {
+            ItensServico.push($(this).val());
+        });
+
+        jQuery.ajax({
+            type: "POST",
+            url: "@Url.Action("ResolverChamado")",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(ItensServico),
+            success: function (data) { alert(data); },
+            failure: function (errMsg) {
+                alert(errMsg);
+            }
+        });
+    }
+</script>*@
+
+@*<script>
+    function submitFormEstoque() {
+        var ItensEstoque = new Array;
+        $("#ItensEstoque option").each(function () {
+            ItensEstoque.push($(this.id).val());
+        });
+
+        jQuery.ajax({
+            type: "POST",
+            url: "@Url.Action("ResolverChamado")",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(ItensEstoque),
+            success: function (data) { alert(data); },
+            failure: function (errMsg) {
+                alert(errMsg);
+            }
+        });
+    }
+</script>*@
+
+
+<h2>Resolução do Chamado: @ViewBag.Ticket.CodigoTicket </h2>
+<p>Validação das informações para resolução do chamado</p>
+<form action="/Home/ResolverChamado" method="post">
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="Ticket">Ticket</label>
+            <input type="text" class="form-control" id="Ticket" name="ticket.CodigoTicket" value="@ViewBag.Ticket.CodigoTicket" readonly="readonly">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="DataAbertura">Data de Abertura</label>
+            <input type="text" class="form-control" id="DataAbertura" name="ticket.DataCadastro" value="@ViewBag.Ticket.DataCadastro" readonly="readonly">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="Status">Status</label>
+            <input type="text" class="form-control" id="Status" name="ticket.Status" value="@ViewBag.Ticket.Status" readonly="readonly">
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label for="Nome">Nome</label>
+            <input type="text" class="form-control" id="Nome" name="ticket.Usuario.Nome" value="@ViewBag.Ticket.Usuario.Nome" readonly="readonly">
+            <label for="Email">Email</label>
+            <input type="text" class="form-control" id="Email" name="ticket.Usuario.Email" value="@ViewBag.Ticket.Usuario.Email" readonly="readonly">
+            <label for="Urgencia">Urgência</label>
+            <input type="text" class="form-control" id="Urgencia" name="ticket.TipoServico.Prioridade.NivelPrioridade" value="@ViewBag.Ticket.TipoServico.Prioridade.NivelPrioridade" readonly="readonly">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="Sobrenome">Sobrenome</label>
+            <input type="text" class="form-control" id="Sobrenome" name="ticket.Usuario.Sobrenome" value="@ViewBag.Ticket.Usuario.Sobrenome" readonly="readonly">
+            <label for="Departamento">Tempo de atendimento (Horas)</label>
+            <input type="text" class="form-control" id="TempoAtendimento" name="ticket.TipoServico.Prioridade.TempoAtendimento" value="@ViewBag.Ticket.TipoServico.Prioridade.TempoAtendimento" readonly="readonly">
+            <label for="Prioridade">Prioridade</label>
+            <input type="text" class="form-control" id="Prioridade" name="ticket.TipoServico.Prioridade.DescricaoPrioridade" value="@ViewBag.Ticket.TipoServico.Prioridade.DescricaoPrioridade" readonly="readonly">
+            <input type="hidden" id="idDepartamento" name="ticket.TipoServico.Departamento.Id" value="@ViewBag.Ticket.TipoServico.Departamento.Id" readonly="readonly">
+            @*<label for="Horas">Horas para atendimento</label>
+        <input type="text" class="form-control" id="Tipo" name="ticket.TipoServico.Prioridade.TempoAtendimento" value="@ViewBag.TipoServico.Prioridade.TempoAtendimento" readonly="readonly">*@
+        </div>
+
+        <div class="form-group col-md-1">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="Departamento">Departamento</label>
+            <input type="text" class="form-control" id="Departamento" name="ticket.TipoServico.Departamento.NomeDepartamento" value="@ViewBag.Ticket.TipoServico.Departamento.NomeDepartamento" readonly="readonly">
+
+            <label for="Tipo">Tipo</label>
+            <input type="text" class="form-control" id="Tipo" name="ticket.TipoServico.NomeServico" value="@ViewBag.Ticket.TipoServico.NomeServico" readonly="readonly">
+
+            @*<label for="Equipe">Equipe de atendimento</label>
+                <input type="text" class="form-control" id="Equipe" name="ticket.TipoServico.Departamento.NomeDepartamento" value="@ViewBag.Ticket.Departamento.NomeDepartamento" readonly="readonly">*@
+
+            <label for="Tecnico">Técnico Responsável</label>
+            <input type="text" class="form-control" id="Tecnico" name="ticket.TecnicoResponsavel" value="@ViewBag.Ticket.TecnicoResponsavel" readonly="readonly">
+        </div>
+
+
+    </div>
+    <hr />
+    <div class="row">
+        <div class="form-group col-md-12">
+            <label for="Descricao"><b>Descrição</b></label>
+            <textarea name="ticket.Descricao" readonly="readonly" class="form-control">@ViewBag.Ticket.Descricao</textarea>
+
+        </div>
+    </div>
+    <hr />
+
+
+    <h3>Itens e serviços utilizados: </h3>
+
+    <div class="row">
+        <div class="form-group col-md-12">
+            <label for="Comentario"><b>Comentário</b></label>
+            <textarea name="ticket.ComentariosTicket.Comentario" class="form-control">@ViewBag.Ticket.ComentariosTicket.Comentario</textarea>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p>Não existindo um item para o estoque ou de serviço, contatar o administrador do sistema</p>
+        <div class="form-row">
+            <div class="col-md-6">
+                <label for="ItemServico">Serviços Realizados</label>
+                <select multiple class="form-control" id="ItemServico" name="ItemServicoForm">
+                    @foreach (var item in ViewBag.ItemServico)
+                    {
+                        <option value="@item.Id">@item.Item</option>
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label for="ItensEstoque">Itens do Estoque Utilizados</label>
+                <select multiple class="form-control" id="ItensEstoque" name="ItemEstoqueForm">
+                    @foreach (var estoque in ViewBag.ItemEstoque)
+                    {
+                        <option value="@estoque.Id">@estoque.Item</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="form-row">
+            <input type="hidden" value="Finalizar" name="ticket.StrAcao" />
+            <input type="submit" value="Submeter" class="btn btn-success" />
+        </div>
+    </div>
+</form>

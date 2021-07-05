@@ -1,0 +1,175 @@
+﻿@{
+    ViewBag.Title = "Relatório";
+
+}
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @TempData["MensagemErro"]
+    </div>
+}
+<div class="form-group">
+    <div class="form-row">
+        <div class="col-md-4">
+            <p>Tipo de Relatório: <b>Chamados @ViewBag.Analise.StrAcao</b></p>
+        </div>
+        <div class="col-md-4">
+            <p>Data de início: <b>@ViewBag.Analise.DataInicioAnalise.ToShortDateString()</b></p>
+        </div>
+        <div class="col-md-4">
+            <p>Data de Término: <b>@ViewBag.Analise.DataFinalAnalise.ToShortDateString()</b></p>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="form-row">
+        @if (!string.IsNullOrEmpty(ViewBag.Analise.GetTicket.TipoServico.Departamento.NomeDepartamento))
+        {
+            <div class="col-md-4">
+                <p>Departamento: <b>@ViewBag.Analise.GetTicket.TipoServico.Departamento.NomeDepartamento</b></p>
+            </div>
+        }
+
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            @Html.ActionLink("Voltar", "Voltar", "Home", new { returnUrl = this.Request.UrlReferrer }, new { @class = "btn btn-success btn-block" })
+        </div>
+    </div>
+</div>
+
+@{
+    string[] meses = new string[12];
+    meses[0] = "Janeiro";
+    meses[1] = "Fevereiro";
+    meses[2] = "Março";
+    meses[3] = "Abril";
+    meses[4] = "Maio";
+    meses[5] = "Junho";
+    meses[6] = "Julho";
+    meses[7] = "Agosto";
+    meses[8] = "Setembro";
+    meses[9] = "Outubro";
+    meses[10] = "Novembro";
+    meses[11] = "Dezembro";
+
+
+    //int mesInicial = ViewBag.Analise.DataInicioAnalise.Month,
+    //    mesFinal = ViewBag.Analise.DataFinalAnalise.Month;
+
+
+    List<string> legendas = new List<string>();
+
+    foreach (var item in ViewBag.Legendas)
+    {
+        legendas.Add(item);
+    }
+
+
+    List<Series> Series = new List<Series>();
+
+
+
+    foreach (var item in legendas)
+    {
+        LineSeries ls = new LineSeries
+        {
+            Name = item,
+            Data = @ViewData[item] as List<LineSeriesData>
+        };
+
+        Series.Add(ls);
+    }
+
+    //int i = 0;
+    //List<string> objMes = new List<string>();
+
+    //for (i = mesInicial; i < mesFinal +1; i++)
+    //{
+    //    objMes.Add(meses[i]);
+    //}
+
+
+}
+
+
+@*CDN HIGHCHARTS*@
+
+        <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+@*<script src="~/Scripts/highcharts/exporting.js"></script>
+<script src="~/Scripts/highcharts/highcharts.js"></script>*@
+
+@using Highsoft.Web.Mvc.Charts
+
+@(Html.Highsoft().GetHighcharts(
+            new Highcharts
+            {
+                Title = new Title
+                {
+                    Text = "Chamados " + ViewBag.Analise.StrAcao,
+                    X = -20
+                },
+                Subtitle = new Subtitle
+                {
+                    Text = "HelpME - Sistema de gestão de chamados Técnicos",
+                    X = -20
+                },
+                XAxis = new List<XAxis>
+            {
+        new XAxis
+        {
+        Categories = meses.ToList(),
+
+        }
+            },
+                YAxis = new List<YAxis>
+            {
+        new YAxis
+        {
+        Title = new YAxisTitle
+        {
+        Text = "Categorias"
+        },
+        PlotLines = new List<YAxisPlotLines>
+        {
+        new YAxisPlotLines
+        {
+        Value = 0,
+        Width = 1,
+        Color = "#808080"
+        }
+        }
+        }
+            },
+                Tooltip = new Tooltip
+                {
+                    PointFormat = "{point.y} - {point.custom1} - {point.custom2}"
+        //ValueSuffix = "°C"
+    },
+                Legend = new Legend
+                {
+                    Layout = LegendLayout.Horizontal,
+                    Align = LegendAlign.Center,
+                    VerticalAlign = LegendVerticalAlign.Bottom,
+                    BorderWidth = 0
+                },
+                Series = Series
+
+    //Series = new List<Series>
+    //{
+
+    //    new LineSeries
+    //    {
+    //        Name = "Energia",
+    //        Data = @ViewData["eData"] as List<LineSeriesData>
+    //    }
+    //}
+}
+            , "chart")
+)

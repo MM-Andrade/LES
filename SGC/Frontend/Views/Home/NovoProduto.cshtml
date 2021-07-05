@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "NovoProduto";
+}
+@using (Html.BeginForm("NovoProduto", "Home", FormMethod.Post))
+{
+    <form>
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-4">
+                    <label for="Nome">Item</label>
+                    <input class="form-control" id="Item" type="text" placeholder="Nome" name="Estoque.Item" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="Sobrenome">Quantidade</label>
+                    <input class="form-control" id="QuantidadeEstoque" type="text" placeholder="Quantidade" name="Estoque.QuantidadeEstoque" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="Unidade">Unidade</label>
+                    <select class="form-control" id="Unidade" name="Estoque.Unidade" required>
+                        <option value="" hidden>Selecione...</option>
+                        <option value="MTS">Metros</option>
+                        <option value="UN">Unidades</option>
+                        <option value="KG">Kilos</option>
+
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-4">
+                    <label for="codigoean">EAN:</label>
+                    <input class="form-control" id="codigoean" type="text" placeholder="EAN" name="Estoque.codigoean" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="Departamento">Departamento</label>
+                    <select class="form-control" id="Departamento" name="Estoque.Departamento.Id" required>
+                        <option value="" hidden>Selecione...</option>
+                        @foreach (var departamento in ViewBag.Departamento)
+                        {
+                            <option value="@departamento.Id">@departamento.NomeDepartamento</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-4">
+                    @Html.ActionLink("Voltar", "Voltar", "Home", new { returnUrl = this.Request.UrlReferrer }, new { @class = "btn btn-success btn-block" })
+                </div>
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-4">
+                    <input type="submit" class="btn btn-primary btn-block" value="Cadastrar" />
+                </div>
+            </div>
+        </div>
+    </form>
+}

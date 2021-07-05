@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Meus chamados";
+}
+
+<h1>Meus chamados abertos</h1>
+
+<hr/>
+<div class="table-responsive">
+    <table class="table table-bordred table-hover table-striped">
+        <thead class="thead-dark">
+            <tr>
+
+                <th>Nro.</th>
+                <th>Data de Abertura</th>
+                <th>Tipo</th>
+                <th>Status</th>
+                <th>Prioridade</th>
+                <th>Grupo</th>
+            </tr>
+        </thead>
+        @if (ViewBag.Tickets != null)
+        {
+            <tbody>
+                @foreach (var item in ViewBag.Tickets)
+                {
+                <tr>
+                    <td>@Html.ActionLink((string)item.CodigoTicket, "Ticket", new { id = item.CodigoTicket })</td>
+                    <td>@item.DataCadastro</td>
+                    <td>@item.TipoServico.NomeServico</td>
+                    <td>@item.Status</td>
+                    <td>@item.TipoServico.Prioridade.DescricaoPrioridade</td>
+                    <td>@item.TipoServico.Departamento.NomeDepartamento</td>
+
+                </tr>
+                }
+            </tbody>
+        }
+
+    </table>
+</div>
