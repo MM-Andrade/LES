@@ -1,0 +1,16 @@
+INSERT INTO "tb_grupoatendimento"("id", "nomegrupo", "fk_departamento") VALUES (1, 'Impressoras', 2);
+INSERT INTO "tb_grupoatendimento"("id", "nomegrupo", "fk_departamento") VALUES (2, 'Redes', 2);
+INSERT INTO "tb_grupoatendimento"("id", "nomegrupo", "fk_departamento") VALUES (3, 'Servidores', 2);
+INSERT INTO "tb_grupoatendimento"("id", "nomegrupo", "fk_departamento") VALUES (4, 'Field', 2);
+INSERT INTO "tb_grupoatendimento"("id", "nomegrupo", "fk_departamento") VALUES (5, 'Eletricistas', 4);
+INSERT INTO "tb_grupoatendimento"("id", "nomegrupo", "fk_departamento") VALUES (6, 'Construção', 1);
+INSERT INTO "tb_grupoatendimento"("id", "nomegrupo", "fk_departamento") VALUES (7, 'Jardinagem', 1);
+INSERT INTO "tb_grupoatendimento"("id", "nomegrupo", "fk_departamento") VALUES (8, 'Limpeza', 3);
+INSERT INTO "tb_grupoatendimento"("id", "nomegrupo", "fk_departamento") VALUES (9, 'Manutenção Predial ', 3);
+INSERT INTO "tb_grupoatendimento"("id", "nomegrupo", "fk_departamento") VALUES (10, 'Técnico Telefonia', 5);
+INSERT INTO "tb_grupoatendimento"("id", "nomegrupo", "fk_departamento") VALUES (11, 'Administração Geral', 3);
+INSERT INTO "tb_grupoatendimento"("id", "nomegrupo", "fk_departamento") VALUES (12, 'TI - Informática', 2);
+INSERT INTO "tb_grupoatendimento"("id", "nomegrupo", "fk_departamento") VALUES (13, 'ADM - Administração', 3);
+INSERT INTO "tb_grupoatendimento"("id", "nomegrupo", "fk_departamento") VALUES (14, 'OBS - Obras', 1);
+INSERT INTO "tb_grupoatendimento"("id", "nomegrupo", "fk_departamento") VALUES (15, 'ENR  - Energia Elétrica', 4);
+INSERT INTO "tb_grupoatendimento"("id", "nomegrupo", "fk_departamento") VALUES (16, 'TEL - Telefonia', 5);

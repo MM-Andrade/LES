@@ -1,0 +1,9 @@
+INSERT INTO "tb_servicosutilizados"("id", "fk_ticket", "fk_itemservico") VALUES (1, 1, 29);
+INSERT INTO "tb_servicosutilizados"("id", "fk_ticket", "fk_itemservico") VALUES (2, 1, 30);
+INSERT INTO "tb_servicosutilizados"("id", "fk_ticket", "fk_itemservico") VALUES (3, 65, 13);
+INSERT INTO "tb_servicosutilizados"("id", "fk_ticket", "fk_itemservico") VALUES (4, 83, 13);
+INSERT INTO "tb_servicosutilizados"("id", "fk_ticket", "fk_itemservico") VALUES (5, 84, 10);
+INSERT INTO "tb_servicosutilizados"("id", "fk_ticket", "fk_itemservico") VALUES (6, 85, 10);
+INSERT INTO "tb_servicosutilizados"("id", "fk_ticket", "fk_itemservico") VALUES (7, 79, 27);
+INSERT INTO "tb_servicosutilizados"("id", "fk_ticket", "fk_itemservico") VALUES (8, 74, 27);
+INSERT INTO "tb_servicosutilizados"("id", "fk_ticket", "fk_itemservico") VALUES (9, 75, 37);
