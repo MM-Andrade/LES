@@ -1,6 +1,6 @@
 # Projeto de Laboratório de Engenharia de Software
 Este projeto foi desenvolvido em 2018 e apresentado na disciplina Laboratório de Engenharia de Software da Fatec Mogi das Cruzes. 
-A proposta da disciplina consiste aplicar o conhecimento adquirido no curso de Análise e Desenvolvimento de Sistemas e desenvolver um software na arquitetura e design patterns, de forma desacoplada ao banco de dados e proposta pelo professor.
+A disciplina consiste em aplicar o conhecimento adquirido no curso de Análise e Desenvolvimento de Sistemas e, desenvolver um software na arquitetura com design patterns de forma desacoplada ao banco de dados como proposto pelo professor.
 
 
 # Software e Tecnologias utilizadas
